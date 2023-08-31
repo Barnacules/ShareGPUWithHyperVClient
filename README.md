@@ -9,15 +9,16 @@ This PowerShell script will enable GPU partitioning of your nVidia GPU in your h
 - You must re-run this script for each VM you run it on whenever you update the drivers on your HOST machine otherwise you'll have issues 
 
 # Instructions
-1. Download ShareGPUWithHyperVClient.ps1 to a local folder
-2. Open elevated (Admin) PowerShell Prompt
-3. Navigate to folder where you downloaded script
-4. Edit script with your favorite text editor
-5. Change $vm variable to equal the name of the virtual machine you want to enable GPU on
-6. Make sure the VM you're targeting IS NOT RUNNING! You must stop it before running this
-7. Run script '.\ShareGPUWithHyperVClient.ps1' and wait for it to complete
-8. Now your VM will be running and should show your host GPU under device manager
-9. Open Microsoft Edge and navigate to 'EDGE://GPU' and it should show almost everything as "Hardware Accelerated"
+1. Create a System Restore Point -or- Full Backup before proceeding incase something goes wrong
+2. Download ShareGPUWithHyperVClient.ps1 to a local folder
+3. Open elevated (Admin) PowerShell Prompt
+4. Navigate to folder where you downloaded script
+5. Edit script with your favorite text editor
+6. Change $vm variable to equal the name of the virtual machine you want to enable GPU on
+7. Make sure the VM you're targeting IS NOT RUNNING! You must stop it before running this
+8. Run script '.\ShareGPUWithHyperVClient.ps1' and wait for it to complete
+9. Now your VM will be running and should show your host GPU under device manager
+10. Open Microsoft Edge and navigate to 'EDGE://GPU' and it should show almost everything as "Hardware Accelerated"
 
 # Other Supporting Changes
 By default Remote Desktop Client (MSTSC.EXE) is locked at 30fps max so when you run things on the VM it won't seem like they are running at a high framerate but if you run a benchmark like Heaven or run a CUDA task you will see it's running with full hardware acceleration. You can fix this slightly by increasing the maximum framerate of Microsoft Remote Desktop client by downloading and merging *IncreaseRemoteDesktopFPSto60.reg* into your registry from this project. Once you merge with the registry simply close down all mstsc.exe (Remote Desktop Client) sessions and re-start them and you should see a noticable improvement in framerate overall even if sometimes it still can't hit 60 due to networking issues, etc.
